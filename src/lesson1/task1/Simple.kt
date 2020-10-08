@@ -114,7 +114,7 @@ fun thirdDigit(number: Int): Int = TODO()
 fun travelMinutes(hoursDepart: Int, minutesDepart: Int, hoursArrive: Int, minutesArrive: Int): Int {
     val x1 = hoursArrive * 60 + minutesArrive
     val x2 = hoursDepart * 60 + minutesDepart
-    return x1 - x2
+    return x1 - x
 }
 
 /**
