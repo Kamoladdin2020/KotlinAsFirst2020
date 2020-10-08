@@ -65,7 +65,11 @@ fun main() {
  * Пользователь задает время в часах, минутах и секундах, например, 8:20:35.
  * Рассчитать время в секундах, прошедшее с начала суток (30035 в данном случае).
  */
-fun seconds(hours: Int, minutes: Int, seconds: Int): Int = TODO()
+fun seconds(hours: Int, minutes: Int, seconds: Int): Int {
+    val x1 = hours * 60 * 60
+    val x2 = minutes * 60
+    return x1 + x2 + seconds
+}
 
 /**
  * Тривиальная (1 балл)
@@ -107,7 +111,11 @@ fun thirdDigit(number: Int): Int = TODO()
  * прибыл на станцию назначения в h2 часов m2 минут того же дня (например в 13:01).
  * Определите время поезда в пути в минутах (в данном случае 216).
  */
-fun travelMinutes(hoursDepart: Int, minutesDepart: Int, hoursArrive: Int, minutesArrive: Int): Int = TODO()
+fun travelMinutes(hoursDepart: Int, minutesDepart: Int, hoursArrive: Int, minutesArrive: Int): Int {
+    val x1 = hoursArrive * 60 + minutesArrive
+    val x2 = hoursDepart * 60 + minutesDepart
+    return x1 - x2
+}
 
 /**
  * Простая (2 балла)
