@@ -3,6 +3,7 @@
 package lesson2.task1
 
 import lesson1.task1.discriminant
+import lesson1.task1.sqr
 import kotlin.math.max
 import kotlin.math.sqrt
 
@@ -81,7 +82,20 @@ fun timeForHalfWay(
     t1: Double, v1: Double,
     t2: Double, v2: Double,
     t3: Double, v3: Double
-): Double = TODO()
+): Double {
+    val way = t1 * v1 + t2 * v2 + t3 * v3
+    val halfOfWay = way / 2
+    val s1 = t1 * v1
+    val s2 = t2 * v2
+    val s3 = t3 * v3
+
+    return when {
+        halfOfWay <= s1 -> halfOfWay / v1
+        halfOfWay <= s1 + s2 -> t1 + (halfOfWay - s1) / v2
+        halfOfWay <= s1 + s2 + s3 -> t1 + t2 + (halfOfWay - s1 - s2) / v3
+        else -> 0.0
+    }
+}
 
 /**
  * Простая (2 балла)
@@ -96,7 +110,16 @@ fun whichRookThreatens(
     kingX: Int, kingY: Int,
     rookX1: Int, rookY1: Int,
     rookX2: Int, rookY2: Int
-): Int = TODO()
+): Int {
+    val firstThreat = kingX == rookX1 || kingY == rookY1
+    val secondThreat = kingX == rookX2 || kingY == rookY2
+    return when {
+        firstThreat && secondThreat -> 3
+        firstThreat -> 1
+        secondThreat -> 2
+        else -> 0
+    }
+}
 
 /**
  * Простая (2 балла)
@@ -122,7 +145,18 @@ fun rookOrBishopThreatens(
  * прямоугольным (вернуть 1) или тупоугольным (вернуть 2).
  * Если такой треугольник не существует, вернуть -1.
  */
-fun triangleKind(a: Double, b: Double, c: Double): Int = TODO()
+fun triangleKind(a: Double, b: Double, c: Double): Int {
+    val firstSide = maxOf(a, b, c)
+    val thirdSide = minOf(a, b, c)
+    val secondSide = a + b + c - firstSide - thirdSide
+    return when {
+        thirdSide + secondSide < firstSide -> -1
+        sqr(secondSide) + sqr(thirdSide) > sqr(firstSide) -> 0
+        sqr(secondSide) + sqr(thirdSide) == sqr(firstSide) -> 1
+        sqr(secondSide) + sqr(thirdSide) < sqr(firstSide) -> 2
+        else -> -1
+    }
+}
 
 /**
  * Средняя (3 балла)

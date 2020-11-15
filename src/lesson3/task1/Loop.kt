@@ -2,6 +2,8 @@
 
 package lesson3.task1
 
+import kotlin.math.max
+import kotlin.math.pow
 import kotlin.math.sqrt
 
 // Урок 3: циклы
@@ -72,7 +74,15 @@ fun digitCountInNumber(n: Int, m: Int): Int =
  *
  * Использовать операции со строками в этой задаче запрещается.
  */
-fun digitNumber(n: Int): Int = TODO()
+fun digitNumber(n: Int): Int {
+    var num = n
+    var counter = 0
+    while (num > 0) {
+        counter++
+        num /= 10
+    }
+    return counter
+}
 
 /**
  * Простая (2 балла)
@@ -80,21 +90,42 @@ fun digitNumber(n: Int): Int = TODO()
  * Найти число Фибоначчи из ряда 1, 1, 2, 3, 5, 8, 13, 21, ... с номером n.
  * Ряд Фибоначчи определён следующим образом: fib(1) = 1, fib(2) = 1, fib(n+2) = fib(n) + fib(n+1)
  */
-fun fib(n: Int): Int = TODO()
+fun fib(n: Int): Int {
+    var num1 = 1
+    var num2 = 1
+    for (i in 3..n) {
+        val a = num2
+        num2 += num1
+        num1 = a
+    }
+    return num2
+}
 
 /**
  * Простая (2 балла)
  *
  * Для заданного числа n > 1 найти минимальный делитель, превышающий 1
  */
-fun minDivisor(n: Int): Int = TODO()
+fun minDivisor(n: Int): Int {
+    val limit = sqrt(n.toDouble()).toInt()
+    for (i in 2..limit){
+        if (n % i == 0) return i
+    }
+    return n
+}
 
 /**
  * Простая (2 балла)
  *
  * Для заданного числа n > 1 найти максимальный делитель, меньший n
  */
-fun maxDivisor(n: Int): Int = TODO()
+fun maxDivisor(n: Int): Int {
+    var divisor = 1
+    for (i in 2 until n){
+        if (n % i == 0) divisor = i
+    }
+    return divisor
+}
 
 /**
  * Простая (2 балла)
@@ -147,7 +178,17 @@ fun squareBetweenExists(m: Int, n: Int): Boolean = TODO()
  *
  * Использовать операции со строками в этой задаче запрещается.
  */
-fun revert(n: Int): Int = TODO()
+fun revert(n: Int): Int {
+    var num = n
+    var res = 0
+    val len = digitNumber(n)
+    for (i in 0 until len) {
+        val digit = num % 10
+        res += digit * 10.0.pow(len - i - 1).toInt()
+        num /= 10
+    }
+    return res
+}
 
 /**
  * Средняя (3 балла)

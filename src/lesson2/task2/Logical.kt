@@ -3,6 +3,7 @@
 package lesson2.task2
 
 import lesson1.task1.sqr
+import kotlin.math.sqrt
 
 /**
  * Пример
@@ -18,7 +19,13 @@ fun pointInsideCircle(x: Double, y: Double, x0: Double, y0: Double, r: Double) =
  * Четырехзначное число назовем счастливым, если сумма первых двух ее цифр равна сумме двух последних.
  * Определить, счастливое ли заданное число, вернуть true, если это так.
  */
-fun isNumberHappy(number: Int): Boolean = TODO()
+fun isNumberHappy(number: Int): Boolean {
+    val d1 = number / 1000
+    val d2 = number / 100 % 10
+    val d3 = number / 10 % 10
+    val d4 = number % 10
+    return d1 + d2 == d3 + d4
+}
 
 /**
  * Простая (2 балла)
@@ -48,7 +55,10 @@ fun daysInMonth(month: Int, year: Int): Int = TODO()
 fun circleInside(
     x1: Double, y1: Double, r1: Double,
     x2: Double, y2: Double, r2: Double
-): Boolean = TODO()
+): Boolean {
+    val distanceBetweenCenters = sqrt(sqr(x1 - x2) + sqr(y1 - y2))
+    return distanceBetweenCenters + r1 <= r2
+}
 
 /**
  * Средняя (3 балла)
