@@ -191,8 +191,9 @@ fun findCheapestStuff(stuff: Map<String, Pair<String, Double>>, kind: String): S
     }
 
     for (item in stuff) {
-        if (item.value.first == kind && item.value.second < minCost) {
+        if (item.value.first == kind && item.value.second <= minCost) {
             cheapestStuff = item.key
+            minCost = item.value.second
         }
     }
     return cheapestStuff
@@ -210,9 +211,12 @@ fun canBuildFrom(chars: List<Char>, word: String): Boolean {
     val setOfChars = mutableSetOf<Char>()
     for (i in chars) {
         setOfChars.add(i.toLowerCase())
+
     }
-    val charsInWord = word.toLowerCase().toSet()
-    return charsInWord in setOfChars || charsInWord == setOfChars
+    for (i in word) {
+        if (i.toLowerCase() !in setOfChars) return false
+    }
+    return true
 }
 
 /**
