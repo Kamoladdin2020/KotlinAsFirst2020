@@ -116,7 +116,7 @@ fun centerFile(inputName: String, outputName: String) {
     val inputFile = File(inputName)
     val lines = inputFile.readLines().toMutableList()
     val resultSB = StringBuilder()
-    for (i in inputFile.readLines().indices) {
+    for (i in lines.indices) {
         lines[i] = lines[i].trim()
     }
 
@@ -233,10 +233,9 @@ fun transliterate(inputName: String, dictionary: Map<Char, String>, outputName: 
         dictionaryToLC[key.toLowerCase()] = value
     }
     for (sym in text) {
-        var isSymLC = sym.isLowerCase()
-        if (!Regex("[a-zA-Zа-яА-ЯёЁ]").matches(sym.toString())) isSymLC = true
+        val isSymUC = sym.isUpperCase()
         if (sym.toLowerCase() in dictionaryToLC.keys) {
-            if (isSymLC) resultSB.append(dictionaryToLC[sym.toLowerCase()]?.toLowerCase())
+            if (!isSymUC) resultSB.append(dictionaryToLC[sym.toLowerCase()]?.toLowerCase())
             else resultSB.append(dictionaryToLC[sym.toLowerCase()]?.toLowerCase()?.capitalize())
         } else resultSB.append(sym)
     }

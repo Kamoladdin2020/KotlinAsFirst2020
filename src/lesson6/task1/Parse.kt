@@ -97,8 +97,8 @@ fun dateStrToDigit(str: String): String {
         var num: Int
         if (i != 1) num = dateList[i].toIntOrNull() ?: return ""
         else {
-            if (listOfMonth.indexOf(dateList[1]) != -1) num = listOfMonth.indexOf(dateList[1]) + 1
-            else return ""
+            num = listOfMonth.indexOf(dateList[1]) + 1
+            if (num == 0) return ""
         }
         numList.add(num)
 
