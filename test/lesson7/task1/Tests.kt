@@ -207,6 +207,14 @@ Basic, Ruby, Swift.
     @Tag("14")
     fun transliterate() {
         transliterate(
+            "input/trans_in2.txt",
+            mapOf('8' to "a"),
+            "temp.txt"
+        )
+        assertFileContent("temp.txt", "a")
+        File("temp.txt").delete()
+
+        transliterate(
             "input/trans_in1.txt",
             mapOf('з' to "zz", 'р' to "r", 'д' to "d", 'й' to "y", 'М' to "m", 'и' to "yy", '!' to "!!!"),
             "temp.txt"
@@ -221,6 +229,8 @@ Basic, Ruby, Swift.
         )
         assertFileContent("temp.txt", "Zzdrавствуy,\nmyyr!!!")
         File("temp.txt").delete()
+
+
     }
 
     @Test

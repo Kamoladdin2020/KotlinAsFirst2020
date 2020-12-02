@@ -104,16 +104,16 @@ fun dateStrToDigit(str: String): String {
     }
     if (isDateCorrect(numList[0], numList[1], numList[2])) {
         val result = mutableListOf<String>()
-        for (num in numList) {
-            if (num < 10) result.add("0$num")
-            else result.add("$num")
+        for (i in numList.indices) {
+            if (numList[i] < 10 && i != 2) result.add("0${numList[i]}")
+            else result.add("${numList[i]}")
         }
         return result.joinToString(".")
     }
     return ""
 }
 fun isDateCorrect(day: Int, month: Int, year: Int): Boolean {
-    val listOfMaxDays = mutableListOf(30, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31)
+    val listOfMaxDays = mutableListOf(31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31)
     if ((year % 4 == 0 && year % 100 != 0) || year % 400 == 0) {
         listOfMaxDays[1] = 29
     }

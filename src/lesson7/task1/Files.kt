@@ -233,7 +233,8 @@ fun transliterate(inputName: String, dictionary: Map<Char, String>, outputName: 
         dictionaryToLC[key.toLowerCase()] = value
     }
     for (sym in text) {
-        val isSymLC = sym.isLowerCase()
+        var isSymLC = sym.isLowerCase()
+        if (sym.isDigit()) isSymLC = true
         if (sym.toLowerCase() in dictionaryToLC.keys) {
             if (isSymLC) resultSB.append(dictionaryToLC[sym.toLowerCase()]?.toLowerCase())
             else resultSB.append(dictionaryToLC[sym.toLowerCase()]?.toLowerCase()?.capitalize())
