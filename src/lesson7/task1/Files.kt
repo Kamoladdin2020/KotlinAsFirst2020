@@ -234,7 +234,7 @@ fun transliterate(inputName: String, dictionary: Map<Char, String>, outputName: 
     }
     for (sym in text) {
         var isSymLC = sym.isLowerCase()
-        if (!Regex("[a-zA-zа-яА-ЯёЁ]").containsMatchIn(sym.toString())) isSymLC = true
+        if (!Regex("[a-zA-Zа-яА-ЯёЁ]").matches(sym.toString())) isSymLC = true
         if (sym.toLowerCase() in dictionaryToLC.keys) {
             if (isSymLC) resultSB.append(dictionaryToLC[sym.toLowerCase()]?.toLowerCase())
             else resultSB.append(dictionaryToLC[sym.toLowerCase()]?.toLowerCase()?.capitalize())

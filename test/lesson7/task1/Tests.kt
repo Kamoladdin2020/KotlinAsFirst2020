@@ -208,7 +208,7 @@ Basic, Ruby, Swift.
     fun transliterate() {
         transliterate(
             "input/trans_in2.txt",
-            mapOf('-' to "a"),
+            mapOf('`' to "a"),
             "temp.txt"
         )
         assertFileContent("temp.txt", "a")
