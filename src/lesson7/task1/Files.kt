@@ -114,7 +114,6 @@ fun sibilants(inputName: String, outputName: String) {
  */
 fun centerFile(inputName: String, outputName: String) {
     val inputFile = File(inputName)
-    val outputFile = File(outputName).bufferedWriter()
     val lines = inputFile.readLines().toMutableList()
     val resultSB = StringBuilder()
     for (i in inputFile.readLines().indices) {
@@ -129,6 +128,7 @@ fun centerFile(inputName: String, outputName: String) {
         val leftIndent = (maxLength - i.length) / 2
         resultSB.appendLine(" ".repeat(leftIndent) + i)
     }
+    val outputFile = File(outputName).bufferedWriter()
     outputFile.use {
         it.write(resultSB.toString())
     }
@@ -244,6 +244,9 @@ fun transliterate(inputName: String, dictionary: Map<Char, String>, outputName: 
         it.write(resultSB.toString())
     }
 
+}
+fun main(){
+    print("01".toIntOrNull())
 }
 
 /**

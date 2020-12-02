@@ -74,21 +74,22 @@ fun main() {
  * Обратите внимание: некорректная с точки зрения календаря дата (например, 30.02.2009) считается неверными
  * входными данными.
  */
+val listOfMonth = listOf(
+    "января",
+    "февраля",
+    "марта",
+    "апреля",
+    "мая",
+    "июня",
+    "июля",
+    "августа",
+    "сентября",
+    "октября",
+    "ноября",
+    "декабря"
+)
+
 fun dateStrToDigit(str: String): String {
-    val listOfMonth = listOf(
-        "января",
-        "февраля",
-        "марта",
-        "апреля",
-        "мая",
-        "июня",
-        "июля",
-        "августа",
-        "сентября",
-        "октября",
-        "ноября",
-        "декабря"
-    )
     val dateList = str.split(" ")
     if (dateList.size != 3) return ""
     val numList = mutableListOf<Int>()
@@ -96,7 +97,7 @@ fun dateStrToDigit(str: String): String {
         var num: Int
         if (i != 1) num = dateList[i].toIntOrNull() ?: return ""
         else {
-            if (dateList[1] in listOfMonth.toSet()) num = listOfMonth.indexOf(dateList[1]) + 1
+            if (listOfMonth.indexOf(dateList[1]) != -1) num = listOfMonth.indexOf(dateList[1]) + 1
             else return ""
         }
         numList.add(num)
@@ -134,31 +135,11 @@ fun dateDigitToStr(digital: String): String {
     val dateToList = digital.split(".")
     if (dateToList.size != 3) return ""
     val numList = mutableListOf<Int>()
-    for (i in dateToList.indices) {
-        var num = 0
-        for (j in dateToList[i]){
-            val digit = j.toString().toIntOrNull() ?: return ""
-            num *= 10
-            num += digit
-        }
-        numList.add(num)
+    for (i in dateToList) {
+        if(i.toIntOrNull() != null) numList.add(i.toInt())
+        else return ""
     }
     if (isDateCorrect(numList[0], numList[1], numList[2])) {
-        val listOfMonth = listOf(
-            "января",
-            "февраля",
-            "марта",
-            "апреля",
-            "мая",
-            "июня",
-            "июля",
-            "августа",
-            "сентября",
-            "октября",
-            "ноября",
-            "декабря"
-        )
-
         return "${numList[0]} " + listOfMonth[numList[1] - 1] + " ${numList[2]}"
     }
     return ""
