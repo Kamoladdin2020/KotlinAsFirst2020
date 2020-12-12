@@ -2,6 +2,8 @@
 
 package lesson6.task1
 
+import java.lang.IllegalArgumentException
+
 // Урок 6: разбор строк, исключения
 // Максимальное количество баллов = 13
 // Рекомендуемое количество баллов = 11
@@ -170,7 +172,16 @@ fun flattenPhoneNumber(phone: String): String = TODO()
  * Прочитать строку и вернуть максимальное присутствующее в ней число (717 в примере).
  * При нарушении формата входной строки или при отсутствии в ней чисел, вернуть -1.
  */
-fun bestLongJump(jumps: String): Int = TODO()
+fun bestLongJump(jumps: String): Int {
+    val jumpsToList = jumps.split(" ")
+    var result = -1
+    for (i in jumpsToList) {
+        if (i != "%" && i != "-" && i.toIntOrNull() == null) return -1
+        val oneJump = i.toIntOrNull() ?: continue
+        if (oneJump > result) result = oneJump
+    }
+    return result
+}
 
 /**
  * Сложная (6 баллов)
